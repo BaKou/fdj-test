@@ -1,0 +1,256 @@
+{
+  "name": "api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/api",
+        "main": "apps/api/src/main.ts",
+        "tsConfig": "apps/api/tsconfig.app.json",
+        "assets": [
+          "apps/api/src/assets"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/api/src/environments/environment.ts",
+              "with": "apps/api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "api:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/api/**/*.ts"
+        ]
+      },
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json"
+      ]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/api/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ]
+    }
+  },
+  "tags": [],
+  "files": [
+    {
+      "file": "apps/api/.eslintrc.json",
+      "hash": "9d9c0db55bb1e91c5f2e7b64a02bc6bf69fc7cb5"
+    },
+    {
+      "file": "apps/api/jest.config.ts",
+      "hash": "d8f47750a856dd0c1c731c1100998d3cda3e492b"
+    },
+    {
+      "file": "apps/api/project.json",
+      "hash": "7bd08b45d6e83f00e50ddba411975b17db3cf078"
+    },
+    {
+      "file": "apps/api/src/app/.gitkeep",
+      "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "apps/api/src/app/app.controller.spec.ts",
+      "hash": "b991ea7f5b756d6dfb0cac8bbe18eaa966877ec0"
+    },
+    {
+      "file": "apps/api/src/app/app.controller.ts",
+      "hash": "dff210a841eb3893066314660135eb0c534f041d"
+    },
+    {
+      "file": "apps/api/src/app/app.module.ts",
+      "hash": "eb6c9d016949abcb1dfc4824e9d1f5173764ab0c",
+      "deps": [
+        "npm:@nestjs/common",
+        "npm:@nestjs/mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/src/app/app.service.spec.ts",
+      "hash": "884b5c908fce5944d49acd37b35ee54b7d094b47"
+    },
+    {
+      "file": "apps/api/src/app/app.service.ts",
+      "hash": "c2df01940b9f26b94992d0bcbd5d40d101d82664"
+    },
+    {
+      "file": "apps/api/src/assets/.gitkeep",
+      "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "apps/api/src/environments/environment.prod.ts",
+      "hash": "c9669790be176ac85a5d8c11278875c2f52dc507"
+    },
+    {
+      "file": "apps/api/src/environments/environment.ts",
+      "hash": "a20cfe55731540eac839ab33f9ce1eaa6da50b16"
+    },
+    {
+      "file": "apps/api/src/leagues/leagues.controller.ts",
+      "hash": "09b931530c09c5d2f69b606529133234071e8d42",
+      "deps": [
+        "npm:@nestjs/common"
+      ]
+    },
+    {
+      "file": "apps/api/src/leagues/leagues.module.ts",
+      "hash": "2809b4149d2cfebab89d70e5c257c9817a0a5a10",
+      "deps": [
+        "npm:@nestjs/common",
+        "npm:@nestjs/mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/src/leagues/leagues.service.ts",
+      "hash": "7b8ebff99788e7bb8af541015a969df71c033cf1",
+      "deps": [
+        "npm:@nestjs/common",
+        "npm:@nestjs/mongoose",
+        "npm:mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/src/leagues/schemas/league.schema.ts",
+      "hash": "c198c0d5cd797d211d62fe1201c74827f6c5e2d3",
+      "deps": [
+        "npm:mongoose",
+        "npm:@nestjs/mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/src/main.ts",
+      "hash": "5f7d0b9766a47bafb2282e0dc236b2ef50b5cdd9",
+      "deps": [
+        "npm:@nestjs/common",
+        "npm:@nestjs/core"
+      ]
+    },
+    {
+      "file": "apps/api/src/players/players.controller.ts",
+      "hash": "be3185053b0f3c3f35e91761d89edc54c64b0029",
+      "deps": [
+        "npm:@nestjs/common"
+      ]
+    },
+    {
+      "file": "apps/api/src/players/players.module.ts",
+      "hash": "c0ce58d1732d1b9f425c88337fe9e0d4a293dfb4",
+      "deps": [
+        "npm:@nestjs/common",
+        "npm:@nestjs/mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/src/players/players.service.ts",
+      "hash": "3fc0b4d3b3502f7f01175c9527aeb763d0033281",
+      "deps": [
+        "npm:@nestjs/common",
+        "npm:@nestjs/mongoose",
+        "npm:mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/src/players/schemas/player.schema.ts",
+      "hash": "e66607222268899bd75a443c9fb0bd424f27fadf",
+      "deps": [
+        "npm:@nestjs/mongoose",
+        "npm:mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/src/teams/schemas/team.schema.ts",
+      "hash": "3168459ffe192648b4309523596e043a509585df",
+      "deps": [
+        "npm:mongoose",
+        "npm:@nestjs/mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/src/teams/teams.controllers.ts",
+      "hash": "3edb5bcac681edf954113b82f337b10b00d80b1d",
+      "deps": [
+        "npm:@nestjs/common"
+      ]
+    },
+    {
+      "file": "apps/api/src/teams/teams.module.ts",
+      "hash": "3ef1e3ac8a64e3566edbf1b8b7edd36954271f46",
+      "deps": [
+        "npm:@nestjs/common",
+        "npm:@nestjs/mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/src/teams/teams.service.ts",
+      "hash": "be90c4f95442ee7e2379366bc8e405cd1ef8bc1f",
+      "deps": [
+        "npm:@nestjs/common",
+        "npm:@nestjs/mongoose",
+        "npm:mongoose"
+      ]
+    },
+    {
+      "file": "apps/api/tsconfig.app.json",
+      "hash": "91231e40197aba64805b8c86152fb7e496bb1c3a"
+    },
+    {
+      "file": "apps/api/tsconfig.json",
+      "hash": "63dbe35fb282d5f9ac4a724607173e6316269e29"
+    },
+    {
+      "file": "apps/api/tsconfig.spec.json",
+      "hash": "546f12877f7f05dd2e7b8782c7d6eae8189c34c0"
+    }
+  ]
+}
