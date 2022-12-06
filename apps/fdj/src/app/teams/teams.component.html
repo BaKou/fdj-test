@@ -1,0 +1,31 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>League</mat-label>
+    <input type="text"
+           placeholder="Search by league"
+           aria-label="League"
+           matInput
+           [formControl]="leagueControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="actualizeTeam($event.option.value)" [displayWith]="getOptionName">
+      <mat-option *ngFor="let league of filteredLeagues | async" [value]="league">
+        {{ league.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<div *ngIf="(teams$ | async) as teams; else loader">
+  <ul>
+    <li *ngFor="let team of teams">
+      <a [routerLink]="['/teams', team._id, 'players']">
+        <img [src]="team.thumbnail" [alt]="team.name">
+      </a>
+    </li>
+  </ul>
+  <p *ngIf="teams.length === 0"> Aucune équipe dans cette league. Veuillez nous excusez</p>
+</div>
+<ng-template #loader>
+  <fdj-test-loader ></fdj-test-loader>
+</ng-template>
+

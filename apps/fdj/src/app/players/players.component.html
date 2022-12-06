@@ -1,0 +1,27 @@
+<div *ngIf="team$ | async as team">
+   <h1>{{ team.name }}</h1>
+</div>
+
+<a [routerLink]="['/teams']" >Retour</a>
+
+<div class="players-wrapper" *ngIf="(players$ | async) as players; else loader">
+  <div *ngFor="let player of players" class="player-bloc">
+    <div class="player-thumb">
+      <img [src]="player.thumbnail" [alt]="player.name"/>
+    </div>
+    <div class="player-metadata">
+      <div class="player-name">{{player.name}}</div>
+      <div class="player-position">{{player.position}}</div>
+      <div class="player-born">
+        <span>Birth date: </span>
+        <span>{{player.born}}</span>
+      </div>
+      <div class="player-signing">
+        <span>Price: </span>
+        <span>{{player.signin.amount}} {{player.signin.currency}}</span>
+      </div>
+    </div>
+  </div>
+  <p *ngIf="players.length === 0"> Aucun joueur dans cette league. Veuillez nous excusez</p>
+</div>
+<ng-template #loader> </ng-template>

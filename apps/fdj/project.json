@@ -7,16 +7,26 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/fdj",
         "index": "apps/fdj/src/index.html",
         "main": "apps/fdj/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/fdj/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/fdj/src/favicon.ico", "apps/fdj/src/assets"],
-        "styles": ["apps/fdj/src/styles.scss"],
+        "assets": [
+          "apps/fdj/src/favicon.ico",
+          "apps/fdj/src/assets"
+        ],
+        "styles": [
+          "@angular/material/prebuilt-themes/indigo-pink.css",
+          "apps/fdj/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -44,7 +54,14 @@
           "namedChunks": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -67,17 +84,351 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/fdj/**/*.ts", "apps/fdj/**/*.html"]
-      }
+        "lintFilePatterns": [
+          "apps/fdj/**/*.ts",
+          "apps/fdj/**/*.html"
+        ]
+      },
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json"
+      ]
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/fdj/jest.config.ts",
         "passWithNoTests": true
-      }
+      },
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ]
     }
   },
-  "tags": []
+  "tags": [],
+  "files": [
+    {
+      "file": "apps/fdj/.eslintrc.json",
+      "hash": "4b70b4ee8e9431905c306ef6848b7fdc51cfbe1d"
+    },
+    {
+      "file": "apps/fdj/jest.config.ts",
+      "hash": "05b962bd654f04b57eebae4c76cf84bced28336f"
+    },
+    {
+      "file": "apps/fdj/project.json",
+      "hash": "5be9c8bae1aa82eace9d8523ee7f5a2da9755a4d"
+    },
+    {
+      "file": "apps/fdj/src/app/app.component.html",
+      "hash": "0680b43f9c6ae05df91c576141f20ed411d07c7d"
+    },
+    {
+      "file": "apps/fdj/src/app/app.component.scss",
+      "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "apps/fdj/src/app/app.component.spec.ts",
+      "hash": "8d3b90b85c4f4a9c59fc08aa7eec94b0fd701c32",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/app.component.ts",
+      "hash": "a3bd16a8bd34d46bd1c7b9f896af65bdd6ba084a",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/app.module.ts",
+      "hash": "fd2a93d54e84758870c350e04b2749c058cf3eac",
+      "deps": [
+        "npm:@angular/core",
+        "npm:@angular/platform-browser",
+        "npm:@angular/router",
+        "npm:@angular/common",
+        "npm:@angular/material",
+        "npm:@angular/forms"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/app.routes.ts",
+      "hash": "3c200a7cdff7ccfcea0074d6249f73e5f94d6fef",
+      "deps": [
+        "npm:@angular/router"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/leagues/leagues.component.html",
+      "hash": "57ef6612744f3c18d5534f606c2c599cd7ce4283"
+    },
+    {
+      "file": "apps/fdj/src/app/leagues/leagues.component.scss",
+      "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "apps/fdj/src/app/leagues/leagues.component.spec.ts",
+      "hash": "edb3ccf7c23c344b1e0cafa295a1f142cc81f3ae",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/leagues/leagues.component.ts",
+      "hash": "2cf39aa8d2f7d04711b81975a39bf559f8dfb6cb",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/mock/league.mock.ts",
+      "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "apps/fdj/src/app/mock/player.mock.ts",
+      "hash": "cf7c8ff2f3fa173be25c0d310c720a59f7891b75"
+    },
+    {
+      "file": "apps/fdj/src/app/mock/team.mock.ts",
+      "hash": "53e02722b238f258d6e037d0293732feadabbc85"
+    },
+    {
+      "file": "apps/fdj/src/app/models/league.model.ts",
+      "hash": "9ac5dad256a0104d743eefec5efc5a23aa91ab35"
+    },
+    {
+      "file": "apps/fdj/src/app/models/player.model.ts",
+      "hash": "4e0977f883f21a411022a3a72fb159a14b89837d"
+    },
+    {
+      "file": "apps/fdj/src/app/models/team.model.ts",
+      "hash": "ab04dfe744b5c1ab4f448f7465cab88e36274b37"
+    },
+    {
+      "file": "apps/fdj/src/app/nx-welcome.component.ts",
+      "hash": "94a82ac7d5ef96775f83f8997959460a8ce7d32c",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/players/players.component.html",
+      "hash": "9cfa4778ab80e15bd2be62d5c9f2a2e18df6c60e"
+    },
+    {
+      "file": "apps/fdj/src/app/players/players.component.scss",
+      "hash": "60195e474bd89674fea80cf9e099c2aea586af13"
+    },
+    {
+      "file": "apps/fdj/src/app/players/players.component.spec.ts",
+      "hash": "3bf7ec6f2cee6cce8352b1f8e87dff2450c0f283",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/players/players.component.ts",
+      "hash": "4a9562f16e6af9c07239da5001d727009461fcc3",
+      "deps": [
+        "npm:@angular/core",
+        "npm:@angular/router",
+        "npm:rxjs"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/services/leagues.service.spec.ts",
+      "hash": "e8e9d8f18b83bab7592e9cabb0c326970fea809a",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/services/leagues.service.ts",
+      "hash": "227b8fe209eea5d9796d799b60225c0f4a6ed0ba",
+      "deps": [
+        "npm:@angular/core",
+        "npm:@angular/common",
+        "npm:rxjs"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/services/players.service.spec.ts",
+      "hash": "b7f56c243c89bab6a18f398b10455ccff4587146",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/services/players.service.ts",
+      "hash": "2794a235b2aab21d208f3b0c7ef32483d5bea57f",
+      "deps": [
+        "npm:@angular/core",
+        "npm:@angular/common",
+        "npm:rxjs"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/services/teams.service.spec.ts",
+      "hash": "6c532974e62258fba4fc17276b3da2a5b99fb5df",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/services/teams.service.ts",
+      "hash": "c84a4736459870d6a9ffe892d2ae412323b55cc0",
+      "deps": [
+        "npm:@angular/core",
+        "npm:@angular/common",
+        "npm:rxjs"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/shared/autocomplete/autocomplete.component.html",
+      "hash": "6b649ee3290483630d4d1014df207bbe0ed3428d"
+    },
+    {
+      "file": "apps/fdj/src/app/shared/autocomplete/autocomplete.component.scss",
+      "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "apps/fdj/src/app/shared/autocomplete/autocomplete.component.spec.ts",
+      "hash": "ff575053a8b41cfc2332d30e08a5479debd1e86d",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/shared/autocomplete/autocomplete.component.ts",
+      "hash": "cce26c17e3ed3b1c27c59bc66dad5a0342f8e094",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/shared/header/header.component.html",
+      "hash": "4f5a95d663c35591b431bbf42cd5f0550139fa89"
+    },
+    {
+      "file": "apps/fdj/src/app/shared/header/header.component.scss",
+      "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "apps/fdj/src/app/shared/header/header.component.spec.ts",
+      "hash": "9cc48ab6fb9783baf1ecab26f6bce01888e80faa",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/shared/header/header.component.ts",
+      "hash": "f7bbc23c627e4c68c39bd3534ac7723b03d80743",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/shared/loader/loader.component.html",
+      "hash": "9131e4f48868c33d0c007ab9bb62ec7d26e6801e"
+    },
+    {
+      "file": "apps/fdj/src/app/shared/loader/loader.component.scss",
+      "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "apps/fdj/src/app/shared/loader/loader.component.spec.ts",
+      "hash": "b45b265b6ea91da00f3209fc5aeeb9e36ba5dd35",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/shared/loader/loader.component.ts",
+      "hash": "edf5cb54a2b6a9abb05132e5769f5cac5e567ade",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/teams/teams.component.html",
+      "hash": "0ca2daff2231b4ecf9372d6662c9c4f5109c7cd0"
+    },
+    {
+      "file": "apps/fdj/src/app/teams/teams.component.scss",
+      "hash": "4bc9cced438bfd51e0464cfb6da78e656f2b2e96"
+    },
+    {
+      "file": "apps/fdj/src/app/teams/teams.component.spec.ts",
+      "hash": "a330c783161c51d3d8ee7b76e35123fc4e84d4d5",
+      "deps": [
+        "npm:@angular/core"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/app/teams/teams.component.ts",
+      "hash": "7c6d39ea1858d304d8bdea84676b565105d44dcd",
+      "deps": [
+        "npm:@angular/core",
+        "npm:rxjs",
+        "npm:@angular/forms"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/assets/.gitkeep",
+      "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "file": "apps/fdj/src/environments/environment.ts",
+      "hash": "6b5e1b609be511b420dfd3f953c500bf52b4f1f7"
+    },
+    {
+      "file": "apps/fdj/src/favicon.ico",
+      "hash": "317ebcb2336e0833a22dddf0ab287849f26fda57"
+    },
+    {
+      "file": "apps/fdj/src/index.html",
+      "hash": "63c32432b996de30060d1f6532b15048d73b1240"
+    },
+    {
+      "file": "apps/fdj/src/main.ts",
+      "hash": "17a5cd4e0acab76fc50883a7833b33e1046c6d97",
+      "deps": [
+        "npm:@angular/platform-browser-dynamic"
+      ]
+    },
+    {
+      "file": "apps/fdj/src/styles.scss",
+      "hash": "90d4ee0072ce3fc41812f8af910219f9eea3c3de"
+    },
+    {
+      "file": "apps/fdj/src/test-setup.ts",
+      "hash": "1100b3e8a6ed08f4b5c27a96471846d57023c320",
+      "deps": [
+        "npm:jest-preset-angular"
+      ]
+    },
+    {
+      "file": "apps/fdj/tsconfig.app.json",
+      "hash": "e0e9bfbc42fe9260c7e3e7bfb863bdc6e2539fcb"
+    },
+    {
+      "file": "apps/fdj/tsconfig.editor.json",
+      "hash": "20c4afdbf437457984afcb236d4b5e588aec858a"
+    },
+    {
+      "file": "apps/fdj/tsconfig.json",
+      "hash": "709a53ee2bc3279f0ac4b9922bd4fe56ea6b9128"
+    },
+    {
+      "file": "apps/fdj/tsconfig.spec.json",
+      "hash": "c5db02778f96a2a200d787c0a7b376fe0d6c36f7"
+    }
+  ]
 }
