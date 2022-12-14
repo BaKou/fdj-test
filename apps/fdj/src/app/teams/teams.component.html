@@ -5,6 +5,7 @@
            placeholder="Search by league"
            aria-label="League"
            matInput
+           id="plain"
            [formControl]="leagueControl"
            [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="actualizeTeam($event.option.value)" [displayWith]="getOptionName">
@@ -25,7 +26,9 @@
   </ul>
   <p *ngIf="teams.length === 0"> Aucune équipe dans cette league. Veuillez nous excusez</p>
 </div>
-<ng-template #loader>
-  <fdj-test-loader ></fdj-test-loader>
-</ng-template>
+  <ng-template #loader>
+    <fdj-test-loader *ngIf="currentLeague"></fdj-test-loader>
+  </ng-template>
+
+
 

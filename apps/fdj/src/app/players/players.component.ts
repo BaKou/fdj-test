@@ -21,7 +21,7 @@ export class PlayersComponent implements OnInit{
   constructor(private teamsService:TeamsService, private playersService:PlayersService, private route: ActivatedRoute){}
 
   ngOnInit(){
-    this.teamId = this.route.snapshot.params['teamId']
+    this.teamId = this.route.snapshot.params['teamId'];
     this.players$ = this.playersService.getPlayersByTeam(this.teamId).pipe(
       catchError(err => {
         this.error = true;

@@ -34,14 +34,8 @@ export class TeamsComponent implements OnInit {
     );
   }
 
-  getAllTeams(idLeague: number) {
-    //this.teams$ = this.teamsService.getAll(idLeague);
-    this.teams$ = of([mockTeam,mockTeam,mockTeam]);
-  }
-
   actualizeTeam(league: LeagueModel):void {
     this.currentLeague = league._id;
-    console.log(league);
     this.teams$ = this.teamsService.getTeamByLeague(league._id);
   }
 

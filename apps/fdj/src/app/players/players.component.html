@@ -14,7 +14,7 @@
       <div class="player-position">{{player.position}}</div>
       <div class="player-born">
         <span>Birth date: </span>
-        <span>{{player.born}}</span>
+        <span>{{player.born | dateBirthday}}</span>
       </div>
       <div class="player-signing">
         <span>Price: </span>
@@ -23,5 +23,6 @@
     </div>
   </div>
   <p *ngIf="players.length === 0"> Aucun joueur dans cette league. Veuillez nous excusez</p>
+  <p *ngIf="error"> erreur. Veuillez nous excusez</p>
 </div>
 <ng-template #loader> </ng-template>
